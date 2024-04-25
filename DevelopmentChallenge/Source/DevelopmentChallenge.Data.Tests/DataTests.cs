@@ -77,7 +77,7 @@ namespace DevelopmentChallenge.Data.Tests
             Formas.Add(new TrianguloEquilatero(4.2m));
 
             var resumen = Reporte.Imprimir(Formas, Idioma);
-            Assert.That(resumen, Is.EqualTo("<h1>Reporte de Formas</h1>Cuadrado | Area 25 | Perimetro 20 |Circulo | Area 7.07 | Perimetro 9.42 |Triangulo Equilatero | Area 8 | Perimetro 12 |Cuadrado | Area 4 | Perimetro 8 |Triangulo Equilatero | Area 40.5 | Perimetro 27 |Circulo | Area 5.85 | Perimetro 8.58 |Triangulo Equilatero | Area 8.82 | Perimetro 12.6 |<p>TOTAL: 7 formas</p>"));
+            Assert.That(resumen, Is.EqualTo("<h1>Reporte de Formas</h1>Cuadrado | Area 25 | Perimetro 20 |Circulo | Area 7,07 | Perimetro 9,42 |Triangulo Equilatero | Area 8 | Perimetro 12 |Cuadrado | Area 4 | Perimetro 8 |Triangulo Equilatero | Area 40,5 | Perimetro 27 |Circulo | Area 5,85 | Perimetro 8,58 |Triangulo Equilatero | Area 8,82 | Perimetro 12,6 |<p>TOTAL: 7 formas</p>"));
 
         }
 
@@ -145,7 +145,7 @@ namespace DevelopmentChallenge.Data.Tests
             Formas.Add(new TrianguloEquilatero(4.2m));
 
             var resumen = Reporte.Imprimir(Formas, Idioma);
-            Assert.That(resumen, Is.EqualTo("<h1>Shapes report</h1>Square | Area 25 | Perimeter 20 |Circle | Area 7.07 | Perimeter 9.42 |Equilateral Triangle | Area 8 | Perimeter 12 |Square | Area 4 | Perimeter 8 |Equilateral Triangle | Area 40.5 | Perimeter 27 |Circle | Area 5.85 | Perimeter 8.58 |Equilateral Triangle | Area 8.82 | Perimeter 12.6 |<p>TOTAL: 7 shapes</p>"));
+            Assert.That(resumen, Is.EqualTo("<h1>Shapes report</h1>Square | Area 25 | Perimeter 20 |Circle | Area 7,07 | Perimeter 9,42 |Equilateral Triangle | Area 8 | Perimeter 12 |Square | Area 4 | Perimeter 8 |Equilateral Triangle | Area 40,5 | Perimeter 27 |Circle | Area 5,85 | Perimeter 8,58 |Equilateral Triangle | Area 8,82 | Perimeter 12,6 |<p>TOTAL: 7 shapes</p>"));
 
         }
 
@@ -213,7 +213,7 @@ namespace DevelopmentChallenge.Data.Tests
             Formas.Add(new TrianguloEquilatero(4.2m));
 
             var resumen = Reporte.Imprimir(Formas, Idioma);
-            Assert.That(resumen, Is.EqualTo("<h1>Report di forme</h1>Quadrato | La Zona 25 | Perimetro 20 |Cerchio | La Zona 7.07 | Perimetro 9.42 |Triangolo Equilatero | La Zona 8 | Perimetro 12 |Quadrato | La Zona 4 | Perimetro 8 |Triangolo Equilatero | La Zona 40.5 | Perimetro 27 |Cerchio | La Zona 5.85 | Perimetro 8.58 |Triangolo Equilatero | La Zona 8.82 | Perimetro 12.6 |<p>TOTALE: 7 forme</p>"));
+            Assert.That(resumen, Is.EqualTo("<h1>Report di forme</h1>Quadrato | La Zona 25 | Perimetro 20 |Cerchio | La Zona 7,07 | Perimetro 9,42 |Triangolo Equilatero | La Zona 8 | Perimetro 12 |Quadrato | La Zona 4 | Perimetro 8 |Triangolo Equilatero | La Zona 40,5 | Perimetro 27 |Cerchio | La Zona 5,85 | Perimetro 8,58 |Triangolo Equilatero | La Zona 8,82 | Perimetro 12,6 |<p>TOTALE: 7 forme</p>"));
 
         }
 
