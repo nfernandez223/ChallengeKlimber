@@ -1,0 +1,120 @@
+﻿using System;
+using System.Collections.Generic;
+using DevelopmentChallenge.Data.Classes;
+using NUnit.Framework;
+
+namespace DevelopmentChallenge.Data.Tests
+{
+    public abstract class DataTests
+    {
+        protected List<FormaGeometrica> Formas { get; set; }
+
+        protected abstract int Idioma { get; }
+        protected Reporte Reporte { get; set; }
+
+        protected DataTests()
+        {
+            Formas = new List<FormaGeometrica>();
+            Reporte = new Reporte();
+        }
+
+        [SetUp]
+        public void Setup()
+        {
+            ConfigurarFormas();
+        }
+
+        protected abstract void ConfigurarFormas();
+    }
+
+    [TestFixture]
+    public class DataTestsCastellano : DataTests
+    {
+        protected override int Idioma => FormaGeometrica.Castellano;
+
+        protected override void ConfigurarFormas()
+        {
+          Formas.Add(new Cuadrado(5));         
+        }
+
+        [TestCase]
+        public void TestResumenListaVacia()
+        {
+            Assert.That(Reporte.Imprimir(new List<FormaGeometrica>(), Idioma), Is.EqualTo("<h1>Lista vacía de formas!</h1>"));
+        }
+
+        [TestCase]
+        public void TestResumenListaConUnCuadrado()
+        {
+            var resumen = Reporte.Imprimir(Formas, Idioma);
+            Assert.That(resumen, Is.EqualTo("<h1>Reporte de Formas</h1>Cuadrado | Area 25 | Perimetro 20 |<p>TOTAL: 1 forma</p>"));
+
+        }        
+        
+        [TestCase]
+        public void TestResumenListaConMasCuadrados()
+        {
+            Formas.Add(new Cuadrado(1));
+            Formas.Add(new Cuadrado(3));
+
+            var resumen = Reporte.Imprimir(Formas, Idioma);
+            Assert.That(resumen, Is.EqualTo("<h1>Reporte de Formas</h1>Cuadrado | Area 25 | Perimetro 20 |Cuadrado | Area 1 | Perimetro 4 |Cuadrado | Area 9 | Perimetro 12 |<p>TOTAL: 3 formas</p>"));
+
+        }        
+        
+        [TestCase]
+        public void TestResumenListaConMasTipos()
+        {
+            Formas.Clear();
+            Formas.Add(new Cuadrado(5));
+            Formas.Add(new Circulo(3));
+            Formas.Add(new TrianguloEquilatero(4));
+            Formas.Add(new Cuadrado(2));
+            Formas.Add(new TrianguloEquilatero(9));
+            Formas.Add(new Circulo(2.73m));
+            Formas.Add(new TrianguloEquilatero(4.2m));
+
+            var resumen = Reporte.Imprimir(Formas, Idioma);
+            Assert.That(resumen, Is.EqualTo("{<h1>Reporte de Formas</h1>Cuadrado | Area 25 | Perimetro 20 |Circulo | Area 7.07 | Perimetro 9.42 |Triangulo Equilatero | Area 8 | Perimetro 12 |Cuadrado | Area 4 | Perimetro 8 |Triangulo Equilatero | Area 40.5 | Perimetro 27 |Circulo | Area 5.85 | Perimetro 8.58 |Triangulo Equilatero | Area 8.82 | Perimetro 12.6 |<p>TOTAL: 7 formas</p>}"));
+
+        }
+
+    }
+
+    [TestFixture]
+    public class DataTestsIngles : DataTests
+    {
+        protected override int Idioma => FormaGeometrica.Ingles;
+
+        protected override void ConfigurarFormas()
+        {
+            Formas.Add(new Cuadrado(5));
+        }
+
+        [TestCase]
+        public void TestResumenListaVaciaFormasEnIngles()
+        {
+            Assert.Equals("<h1>Lista vacía de formas!</h1>", Reporte.Imprimir(new List<FormaGeometrica>(), Idioma));
+        }
+
+    }
+
+    [TestFixture]
+    public class DataTestsITaliano : DataTests
+    {
+        protected override int Idioma => FormaGeometrica.Italiano;
+
+        protected override void ConfigurarFormas()
+        {
+            Formas.Add(new Cuadrado(5));
+        }
+
+        [TestCase]
+        public void TestResumenListaVaciaFormasEnITaliano()
+        {
+            Assert.That(Reporte.Imprimir(new List<FormaGeometrica>(), Idioma), Is.EqualTo("<h1>Lista vacía de formas!</h1>"));
+        }
+
+    }
+    
+}
